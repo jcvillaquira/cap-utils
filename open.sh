@@ -1,29 +1,38 @@
 #!/bin/bash
 
 declare -A program=(
-  [csv]=libreoffice
+  [csv]="libreoffice --norestore"
   [pdf]=evince
+  [px]=nvim
   [txt]=nvim
-  [xls]=libreoffice
-  [xlsx]=libreoffice
+  [xls]="libreoffice --norestore"
+  [xlsx]="libreoffice --norestore"
 )
 
-declare -A params=([f]=file [e]=xlsx)
+declare -A params=([f]=file)
 while getopts "n:f:e:p:" flag; do
   params[$flag]=$OPTARG
-  if [[ $flag == p ]]; then
-    program[${params[e]}]=$OPTARG
-  fi
 done
 
-if [[ ! -v program[${params[e]}] ]]; then
-  echo "Extension '${params[e]}' not found, please add it to the file $0"
+basename=${params[f]}${params[n]}
+tmp_err=$(mktemp)
+fullname=$(ls downloads/*/downloads/*/$basename.* 2> $tmp_err)
+if [[ -n $(<$tmp_err) ]]; then
+  echo "File downloads/*/downloads/*/$basename.* not found."
   exit 1
 fi
 
-filename="${params[f]}${params[n]}"
-declare -a fullname=$(ls downloads/*/downloads/*/$filename.${params[e]})
+echo "Opening $fullname"
+filename=$(basename $fullname)
+extension=${filename##*.}
 
-if [[ -f $fullname ]]; then
-  ${program[${params[e]}]} $fullname
+if [[ -v params[p] ]]; then
+  program[$extension]=${params[p]}
 fi
+
+if [[ ! -v program[$extension] ]]; then
+  echo "Extension '$extension' not recognized, please add it to the file $0 or specify program with the flag -p."
+  exit 1
+fi
+
+${program[$extension]} $fullname
