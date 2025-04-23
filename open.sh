@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo $fullname > $(dirname $0)/temp
+
 declare -A program=(
   [csv]="libreoffice --norestore"
   [pdf]=evince
@@ -10,7 +12,11 @@ declare -A program=(
 )
 
 declare -A params=([f]=file)
-while getopts "n:f:e:p:" flag; do
+while getopts "n:f:e:p:h" flag; do
+  if [[ $flag == h ]]; then
+    grep -A 1 --colour "\#\+\s*$(basename $0)" $(dirname $0)/README.md
+    exit 0
+  fi
   params[$flag]=$OPTARG
 done
 
@@ -35,4 +41,5 @@ if [[ ! -v program[$extension] ]]; then
   exit 1
 fi
 
+echo $fullname > $(dirname $0)/temp
 ${program[$extension]} $fullname
