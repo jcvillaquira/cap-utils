@@ -7,6 +7,7 @@ declare -A program=(
   [pdf]=evince
   [px]=nvim
   [txt]=nvim
+  [html]=firefox
   [xls]="libreoffice --norestore"
   [xlsx]="libreoffice --norestore"
 )
