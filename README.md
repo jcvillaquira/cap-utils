@@ -16,6 +16,7 @@ done
 ```bash
 utils/
 ├── getname.sh
+├── comment.sh
 ├── updatedm.sh
 ├── getlast.sh
 ├── open.sh
@@ -31,3 +32,6 @@ Automatically open the specified file. By default, a file is assumed to be named
 Print and delete all the index files. That is, any file matching `downloads/*/index.txt*`.
 ### updatedm.sh
 Get the download mapping options.json from BPA.
+### comment.sh
+`comment.sh` is a utility script that comments or uncomments all `nch.js` files located under the `downloads/` directory, except for the first one found (based on alphabetical order).
+To use it, run `./comment.sh -c` to comment the files, or `./comment.sh -u` to reverse the operation.
