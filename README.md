@@ -17,6 +17,7 @@ done
 utils/
 ├── getname.sh
 ├── comment.sh
+├── cparser.sh
 ├── updatedm.sh
 ├── getlast.sh
 ├── open.sh
@@ -35,3 +36,5 @@ Get the download mapping options.json from BPA.
 ### comment.sh
 `comment.sh` is a utility script that comments or uncomments all `nch.js` files located under the `downloads/` directory, except for the first one found (based on alphabetical order).
 To use it, run `./comment.sh -c` to comment the files, or `./comment.sh -u` to reverse the operation.
+### cparser.sh
+`cparser.sh` is a utility script that comments (`-c`) all classes decorated with `@parser.source` in the `parser.py` file, including their full body; it also supports skipping the first N matches with `-n`.
