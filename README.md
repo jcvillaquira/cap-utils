@@ -26,9 +26,9 @@ utils/
 ### getname.sh
 Copy the name of the current automation to clipboard.
 ### getlast.sh
-Get the path of the last file opened with the funtion `open`.
+Get the path of the last file opened with the funtion `open`. Deprecated. Use `open [-options] -c` instead.
 ### open.sh
-Automatically open the specified file. By default, a file is assumed to be named `file` so that `open -n 1` opens the first file matching `downloads/*/downloads/file1.*`. You can customize the prefix and default program using flags. For example, `open -n 2 -f table -p libreoffice` uses LibreOffice to open the first file matching `downloads/*/downloads/table2.*`.
+Open the specified file. By default, opens the first file matching `downloads/*/downloads/*.*`. If a number is specified with the flag `-n N` it searches for `downloads/*/downloads/{file,table}N.*`. The prefix and the default program can be customized using flags. For example, `open -n 2 -f table -p libreoffice` uses LibreOffice to open the first file matching `downloads/*/downloads/table2.*`. Passing the `-c` flag does not open the file but copies its path to clipboard.
 ### rmindex.sh
 Print and delete all the index files. That is, any file matching `downloads/*/index.txt*`.
 ### updatedm.sh

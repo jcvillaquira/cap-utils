@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ " $@ " == *" -h "* ]]; then
+if [[ " $@ " == *" -h "* || true ]]; then
   grep -A 1 --colour "\#\+\s*$(basename $0)" $(dirname $0)/README.md
   exit 0
 fi
