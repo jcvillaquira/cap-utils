@@ -21,6 +21,7 @@ utils/
 ├── updatedm.sh
 ├── getlast.sh
 ├── open.sh
+├── wparser.sh
 └── rmindex.sh
 ```
 ### getname.sh
@@ -33,6 +34,8 @@ Open the specified file. By default, opens the first file matching `downloads/*/
 Print and delete all the index files. That is, any file matching `downloads/*/index.txt*`.
 ### updatedm.sh
 Get the download mapping options.json from BPA.
+### wparser.sh
+Monitor whether the parser.py file has been modified, and automatically run cap run -p after each save. You can pass options to grep using the -g flag. For example, wparser -g "-B 1 Saved" will display lines containing the word Saved along with the line preceding them.
 ### comment.sh
 `comment.sh` is a utility script that comments or uncomments all `nch.js` files located under the `downloads/` directory, except for the first one found (based on alphabetical order).
 To use it, run `./comment.sh -c` to comment the files, or `./comment.sh -u` to reverse the operation.
