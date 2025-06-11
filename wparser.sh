@@ -16,7 +16,7 @@ if [[ ! -f $parser_path ]]; then
 fi
 parser_hash=
 
-grep_pattern=(".*")
+grep_pattern=(--colour=auto -P -e '((Launching|Starting\sparser|Finished|Saved|Found).*)|^')
 while getopts "g:" flag; do
   case $flag in
     g) grep_pattern=(--colour=auto $OPTARG);;
@@ -30,6 +30,6 @@ while true; do
   fi
   clear
   parser_hash="$(cat $parser_path | shasum)" 
-  cap run -p | grep -P "${grep_pattern[@]}"
+  cap run -p | grep "${grep_pattern[@]}"
 done
 
