@@ -24,7 +24,6 @@ while getopts "g:" flag; do
 done
 
 while true; do
-  echo 1
   if [[ "$parser_hash" == "$(cat $parser_path | shasum)" ]]; then
     sleep 0.2
     continue
